@@ -1,6 +1,6 @@
 'use strict';
 
-// adding to re-push and help travis find travis.yml file
+// adding to re-push and help travis find travis.yml file, for another push
 
 const chai = require('chai');
 const chaiHttp = require('chai-http');
