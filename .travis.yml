@@ -1,3 +1,10 @@
 language: node_js
 node_js: node
 before_script: chmod 0777 ./node_modules/.bin/mocha
+deploy:
+  provider: heroku
+  api_key:
+    secure: j9wOETkfnMAivMi9floaZXhmz3z1bZFUZ/GMcM61Ynahd+jQSfUnBVEFEVVZYuc+KgGO6A2yYFboj2x5fKm5hjVNDt+zMfkR2iDxK0NRUHSaCCDFoGAMcgL1dIXNdeqcu3iNfRqz9NlgpbuSAna5XrO4rlETKbZgo6CRjgsFkMIMunx5nMqIvmXlX5/sV1SNrQpO2toitWuBtkybNlK2u9/AbQwhNYhT+td4iJ0J6FtBpLSKVpfkHeHZV8Y038Hn8mBA6uyM7qsxcbcf89jHxE++4A+/ot+DNUQIrzVQPGoqE6wLRv7ebsqIyjDGc+Mpe8kykznea2Sl4RuAi9sZ6M1wunKFROTMUbmXYNIdi+5r+ftxK+oWRX8LdxSJnwOGaOmEdiE5S6zw/zymYlM7m9PWxCu8SmAFnckAxo1AI8AWMvCzUI00oX/CkzCnBZ2UpFwAxiyzD0/c8THSxw4N+EtwRIdS7gnc0hB5+nUrkPoT1GCZ7W91RXyOwUVkP+tsavpO+jaBTah8r+h+VcOw/a6XknqySsUiZKkIXWBMMaHlzAosAVVivTjtGhQkoIOKTTtC8xWwViNYYY32YB4QTqBs1E6iZ7GFIKbgz/SZvtFERZRiBARXd5M4Il6OwJ8mqUzYEBgMf4cxREXHZEZF3BlzqYJrS6ZXXxThl9qebOI=
+  app: intense-gorge-69032
+  on:
+    repo: brianjb-lfl/blogPost-bbW4MOD
