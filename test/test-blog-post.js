@@ -9,11 +9,11 @@ const should = chai.should();
 
 describe('blog-post', function(){
   
-  before(function(){
+  before(function(){          // before(runServer);
     return runServer();
   });
 
-  after(function(){
+  after(function(){           // after(closeServer);
     return closeServer();
   });
 
@@ -43,7 +43,8 @@ describe('blog-post', function(){
         res.body.should.be.a('object');
         const expectedKeys = ['title', 'content', 'author', 'publishDate', 'id'];
         res.body.should.include.keys(expectedKeys);
-        res.body.should.not.be.null;
+        res.body.should.not.be.null;                    // unnecessary - pvs step would accomplish this
+                                                        // check publishDate:  should be between datestamp before and after
         res.body.should.deep.equal(Object.assign(newPost, {id: res.body.id, publishDate: res.body.publishDate}));
       });
   });
@@ -54,17 +55,16 @@ describe('blog-post', function(){
       .get('/blog-post')
       .then(function(res){
         modPost.id = res.body[0].id;
+        console.log('post id = ' + modPost.id);
+        console.log(modPost);
         return chai.request(app)
           .put(`/blog-post/${modPost.id}`)
-          .send(modPost)
-          .then(function(res){
-            res.should.have.status(200);
-            res.body.should.be.a('object');
-            const expectedKeys = ['title', 'content', 'author', 'publishDate', 'id'];
-            res.body.should.include.keys(expectedKeys);
-            res.body.should.not.be.null;
-            res.body.should.deep.equal(Object.assign(modPost, {publishDate: res.body.publishDate}));            
-          });
+          .send(modPost);
+      })
+      .then(function(res){
+        res.should.have.status(204);
+        // res.body.should.be.a('object');                        router does not return body, these steps do nothing
+        // res.body.should.not.be.null;
       });
   });
 
@@ -72,12 +72,11 @@ describe('blog-post', function(){
     return chai.request(app)
       .get('/blog-post')
       .then(function(res){
-        let delID = res.body[0].id;
         return chai.request(app)
-          .delete(`/blog-post/${delID}`)
-          .then(function(res){
-            res.should.have.status(204);
-          });
+          .delete(`/blog-post/${res.body[0].id}`);
+      })
+      .then(function(res){
+        res.should.have.status(204);
       });
   });
 

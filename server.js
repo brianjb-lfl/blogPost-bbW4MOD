@@ -39,9 +39,9 @@ BlogPosts.create(title, content, author);         //     would allow using let{ 
 ({title, content, author} = bp2);                 // parens force this to be interpreted as an expression
 BlogPosts.create(title, content, author);
 
-app.listen(process.env.PORT || 8080, () => {
-  console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
-});
+// app.listen(process.env.PORT || 8080, () => {
+//   console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
+// });
 
 let server;
 
@@ -74,4 +74,4 @@ if (require.main === module) {
   runServer().catch(err => console.error(err));
 }
 
-module.exports(app, runServer, closeServer);
+module.exports = {app, runServer, closeServer};
